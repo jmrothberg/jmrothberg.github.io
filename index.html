@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JMR Play — click to run</title>
+  <meta name="description" content="One page for every browser-playable tool and game by Jonathan M. Rothberg. No install.">
+  <link rel="canonical" href="https://jmrothberg.github.io/">
+  <meta property="og:title" content="JMR Play — click to run">
+  <meta property="og:description" content="Launch any of Jonathan Rothberg’s browser games and tools from one page.">
+  <meta property="og:url" content="https://jmrothberg.github.io/">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg: #070b08;
+      --panel: #0e1610;
+      --line: #1e3a28;
+      --green: #6dff9a;
+      --green-dim: #3d9a5c;
+      --amber: #e8c15a;
+      --text: #d7eadc;
+      --muted: #7fa38b;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+    body {
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(109,255,154,0.03) 1px, transparent 1px);
+      background-size: 100% 28px;
+    }
+    a { color: var(--green); }
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2rem 1.2rem 1rem;
+    }
+    .kicker {
+      color: var(--amber);
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0.35rem 0 0.4rem;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--green);
+    }
+    .lede {
+      max-width: 46rem;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+    nav.filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.2rem;
+    }
+    nav.filters button {
+      background: transparent;
+      color: var(--green);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.7rem;
+      font: inherit;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    nav.filters button[aria-pressed="true"],
+    nav.filters button:hover {
+      background: #12331c;
+      border-color: var(--green-dim);
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.2rem 3rem;
+    }
+    section { margin-top: 1.8rem; }
+    section h2 {
+      margin: 0 0 0.85rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.4rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.85rem;
+    }
+    article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 0.95rem 0.95rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 160px;
+    }
+    article h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+      color: var(--green);
+    }
+    article p {
+      margin: 0 0 0.9rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+    }
+    .play {
+      display: inline-block;
+      background: #163d22;
+      color: var(--green);
+      text-decoration: none;
+      border: 1px solid var(--green-dim);
+      padding: 0.32rem 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+    .play:hover { background: #1e5a32; }
+    .src {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-decoration: none;
+    }
+    .src:hover { color: var(--text); }
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.2rem 2.5rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--amber); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">Jonathan M. Rothberg</div>
+    <h1>JMR Play</h1>
+    <p class="lede">
+      Every project that already runs in a browser, from one page. Click <strong>Play</strong> — no install.
+      Source code stays in each GitHub repo.
+    </p>
+    <nav class="filters" aria-label="Filter">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="tools">Tools</button>
+      <button type="button" data-filter="adventures">Adventures</button>
+      <button type="button" data-filter="games">Games</button>
+      <button type="button" data-filter="labs">Labs</button>
+    </nav>
+  </header>
+
+  <main>
+    <section data-cat="tools">
+      <h2>Tools</h2>
+      <div class="grid">
+        <article>
+          <h3>Rothberg Terminal</h3>
+          <p>Bloomberg-style market terminal from free public data. Stocks, news, flights, vessels.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/rothberg-terminal/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/rothberg-terminal">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>JMR’s Mapper</h3>
+          <p>Browser map editor. Color, split, and edit lines on phone or desktop.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/jmrs-mapper/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/jmrs-mapper">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>TRS-80 Simulator</h3>
+          <p>Level II BASIC in the browser. Load vintage programs, including Scott Adams adventures.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/TRS-80-Simulator/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/TRS-80-Simulator">repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section data-cat="adventures">
+      <h2>Adventures</h2>
+      <div class="grid">
+        <article>
+          <h3>LLM Adventure</h3>
+          <p>Gemma 4B + Z-Image Turbo text adventure. Runs in the browser with WebGPU.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/JMR-LLM-Adventure/browser_adventure/adventure.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/JMR-LLM-Adventure">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Scott Adams Adventures</h3>
+          <p>All 17 classic Scott Adams text games (1978–84), in the browser, with room images.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/scott-adams-adventures/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/scott-adams-adventures">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Ultima VII</h3>
+          <p>The Black Gate + Forge of Virtue, playable in the browser.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/JMR-ULTIMA-VII-BROWSER/dist/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/JMR-ULTIMA-VII-BROWSER">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>BitLife</h3>
+          <p>Life simulator with local LLM narration and in-browser art. No login.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/BitLife/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/BitLife">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Skull Island</h3>
+          <p>Point-and-click adventure generated by the game agent.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Agent_learning/goodgame/build-a-point-and-click-advent_20260621_150955.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Agent_learning">repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section data-cat="games">
+      <h2>Games</h2>
+      <div class="grid">
+        <article>
+          <h3>Gauntlet (original Lynx)</h3>
+          <p>Atari Lynx Gauntlet: The Third Encounter, hosted for browser play.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Gauntlet/JMR-original/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Gauntlet">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Gauntlet: Best Of</h3>
+          <p>Browser recreation with mobile controls.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Gauntlet/Gauntlet_bestof.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Gauntlet">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Chess (browser LLM)</h3>
+          <p>Human, search engine, or on-device chess LLM. No Python required.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/chess_html/chess_full.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/chess_html">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Asteroids</h3>
+          <p>Classic rock-shooting. Touch controls for phone and iPad.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/asteroids.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Pac-Man</h3>
+          <p>Maze chase with ghosts, built for desktop and mobile.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/pacman.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Space Invaders</h3>
+          <p>Fixed-shooter arcade. Works on phone and desktop.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/invaders.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Iron Dome</h3>
+          <p>Missile-defense arcade (missile.html).</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/missile.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Mr. Do!</h3>
+          <p>Dig, collect, and dodge in the classic arcade layout.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/mrdo.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>3D Tank Battle</h3>
+          <p>Browser tank battle from the HTML5 games collection.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/3D_Tank_Battle.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Morse Code Tapper</h3>
+          <p>Learn and tap Morse in the browser.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/morse.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Fix-It Felix Jr.</h3>
+          <p>Window-repair arcade, mobile and desktop.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/fix-it-felix.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Vector Tanks</h3>
+          <p>Generated HTML5 tank game from the Games collection.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Games/Generated_games/vector_oneshot_great.1.0.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Games">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Agent game launcher</h3>
+          <p>All curated agent-built games: fighters, tower defense, Centipede, and more.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Agent_learning/goodgame/">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Agent_learning">repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section data-cat="labs">
+      <h2>Labs</h2>
+      <div class="grid">
+        <article>
+          <h3>3D neuron Game of Life</h3>
+          <p>Genetics-based 3D Game of Life that can train on MNIST in the browser.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/3D-neuron-game-of-life-simulator/neurosim_web.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/3D-neuron-game-of-life-simulator">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>WebGPU image compare</h3>
+          <p>SD-Turbo, Janus-Pro-1B, and SD 1.5 side by side in the browser.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/Collosol-Cave-with-local-LLM/llm_adventure/diffusers-webgpu-compare-test.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/Collosol-Cave-with-local-LLM">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>Z-Image test</h3>
+          <p>Prompt / resolution / steps / seed for Z-Image Turbo. First visit downloads a large model.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/JMR-LLM-Adventure/browser_adventure/zimage_test.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/JMR-LLM-Adventure">repo</a>
+          </div>
+        </article>
+        <article>
+          <h3>TTS test</h3>
+          <p>Kokoro narrator spike used by the LLM adventure.</p>
+          <div class="actions">
+            <a class="play" href="https://jmrothberg.github.io/JMR-LLM-Adventure/browser_adventure/tts_test.html">Play</a>
+            <a class="src" href="https://github.com/jmrothberg/JMR-LLM-Adventure">repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Python, FPGA, and Pi projects are not listed here — they need a local install.
+    Profile: <a href="https://github.com/jmrothberg">github.com/jmrothberg</a>
+  </footer>
+
+  <script>
+    // Category filter only — keeps the page a static link directory.
+    const buttons = document.querySelectorAll("nav.filters button");
+    const sections = document.querySelectorAll("main section");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+        buttons.forEach((b) => b.setAttribute("aria-pressed", b === btn ? "true" : "false"));
+        sections.forEach((sec) => {
+          sec.style.display = filter === "all" || sec.dataset.cat === filter ? "" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
